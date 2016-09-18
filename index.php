@@ -8,7 +8,7 @@
 <body>
   ...
   
-  salut eclipse
+  salut eclipse et git
   <!-- Le reste du contenu -->
   ...
 </body>
