@@ -10,6 +10,6 @@ class ConstanteUtilitaire {
 	const FICHIER_CONF = "configuration.ini";
 	const FICHIER_CONF_PROD = "configurationprod.ini";
 	const REPERTOIRE_VUE_TWIG = "src/vue";
-	
+	const EXTENSION_TWIG = "twig";
 	
 }

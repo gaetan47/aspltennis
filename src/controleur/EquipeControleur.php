@@ -3,23 +3,22 @@
  * Controlleur de la page Equipe
  * 
  * @author gaetanlussagnet
- */
-require_once "src/controleur/Controleur.php";
-		
+ */		
 class EquipeControleur extends Controleur{
 	
 	/**
 	 * Route accueil/index
 	 * @param array $arg
 	 */
-	public static function index ($arg = array()){
+	public static function action_index ($arg = array()){
+		//Init twig
 		$twig = parent::before();
-		
 		//Arguments du template
-		$coucou = count($arg) > 0 ? $arg[0] : '';
+		$twigParam = array();
+		$twigParam['param1'] =  'Equipe';
 		
 		//Rendu de la vue
-		echo $twig->render('EquipeVue.twig',array('param1' => $coucou));
+		parent::after($twig,get_class($this),__FUNCTION__,$twigParam);
 		
 	}
 	

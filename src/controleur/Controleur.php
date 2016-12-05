@@ -4,24 +4,26 @@
  * 
  * @author gaetanlussagnet
  */
-
-require_once "src/utilitaire/ConstanteUtilitaire.php";
-
 class Controleur {
-	
 	
 	/**
 	 * Initialisation de twig
 	 * @return Twig_Environment
 	 */
 	protected static function before(){
-		$ini_array = parse_ini_file(ConstanteUtilitaire::FICHIER_CONF);
-		
+		$config = new ConfigurationUtilitaire();
 		Twig_Autoloader::register();
 		$loader = new Twig_Loader_Filesystem(ConstanteUtilitaire::REPERTOIRE_VUE_TWIG);
-		$twig = new Twig_Environment($loader, array('cache' => 'cache','auto_reload'=>$ini_array['autoreload']));
-		
+		$twig = new Twig_Environment($loader, array('cache' => 'cache','auto_reload'=>$config->getProperties('autoreload')));
 		return $twig;
+	}
+	
+	/**
+	 * Rendu de la vue
+	 */
+	protected static function after($twig,$class,$methode,$param){
+		$vue =  FonctionUtilitaire::getRepertoireVue($class, $methode);
+		echo $twig->render($vue,$param);
 	}
 	
 }
