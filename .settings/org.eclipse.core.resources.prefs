@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/manager/AccueilManager.php=UTF-8
+encoding//src/manager/InformationManager.php=UTF-8
+encoding//src/manager/Manager.php=UTF-8
+encoding//src/utilitaire/ConfigurationUtilitaire.php=UTF-8
+encoding//src/utilitaire/FonctionUtilitaire.php=UTF-8
+encoding//src/vue/accueil/index.twig=UTF-8
+encoding//src/vue/equipe/index.twig=UTF-8
+encoding/index.php=UTF-8
