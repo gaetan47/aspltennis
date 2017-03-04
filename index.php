@@ -6,7 +6,7 @@ require_once 'lib/Twig/Autoloader.php';
 //Chargement automatique des classes
 spl_autoload_register(function ($class) {
 	//Liste des package à scanner
-	$package = array('controleur','modele','utilitaire');
+	$package = array('controleur','modele','utilitaire','manager');
 	foreach ($package as $pack){
 		if (file_exists('src/'.$pack.'/' . $class . '.php')){
 			require_once 'src/'.$pack.'/' . $class . '.php';
@@ -25,7 +25,7 @@ $action = $argumentUrl[0]; //accueil
 $methode = 'action_'.$argumentUrl[1]; //index
 
 //Redirection vers l'index si l'url est incorrecte
-if ($methode === null or $methode === ''){
+if ($methode === null or $methode === 'action_'){
 	$methode = 'action_index';
 }
 
@@ -37,11 +37,14 @@ for ($i=2;$i < count($argumentUrl); $i++){
 //Association de l'url avec le controlleur (configuration.ini)
 $class = $config->getProperties($action);
 
+//Routeur
 if (method_exists($class,$methode)) {
-	$class::$methode($parametres);
+	$controlleur = new $class;
+	$controlleur->$methode($parametres);
 }else {
 	//On redirige vers l'accueil
-	AccueilControleur::action_index();	
+	$ac = new AccueilControleur();
+	$ac->action_index();	
 }
 
 ?>

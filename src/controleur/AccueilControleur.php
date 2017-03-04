@@ -6,18 +6,25 @@
  */		
 class AccueilControleur extends Controleur{
 	
+	protected $className = 'AccueilControleur';
+	
 	/**
 	 * Route accueil/index
 	 * @param array $arg
 	 */
-	public static function action_index ($arg = array()){
+	public function action_index ($arg = array()){
 		//Init twig
-		$twig = parent::before();
-		//Arguments du template
-		$twigParam = array();
-		$twigParam['param1'] =  'Accueil';
+		$this->before();
 		
-		parent::after($twig,get_class($this),__FUNCTION__,$twigParam);
+		$paramTwig = array();
+		
+		$paramTwig['param1'] = 'Accueil';
+		$accueil= AccueilManager::find();
+		$paramTwig['param2'] = $accueil[0]->getContenu();
+		
+		$this->twigParam = $paramTwig;
+		
+		$this->after(__FUNCTION__);
 	}
 	
 }

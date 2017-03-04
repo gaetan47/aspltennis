@@ -6,19 +6,20 @@
  */		
 class EquipeControleur extends Controleur{
 	
+	protected $className = 'EquipeControleur';
+	
 	/**
 	 * Route accueil/index
 	 * @param array $arg
 	 */
-	public static function action_index ($arg = array()){
+	public function action_index ($arg = array()){
 		//Init twig
-		$twig = parent::before();
-		//Arguments du template
-		$twigParam = array();
-		$twigParam['param1'] =  'Equipe';
+		$this->before();
+		
+		$this->twigParam = array('param1' =>  'Accueil');
 		
 		//Rendu de la vue
-		parent::after($twig,get_class($this),__FUNCTION__,$twigParam);
+		$this->after(__FUNCTION__);
 		
 	}
 	
